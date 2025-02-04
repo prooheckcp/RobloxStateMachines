@@ -1,0 +1,19 @@
+name: Release
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  package:
+    name: Package src to release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Package source
+        run: cd src
+          zip -r RobloxStateMachine.zip StateMachine/
+
+      - name: Upload source to release
+        run: gh release upload $GITHUB_REF RobloxStateMachine.zip

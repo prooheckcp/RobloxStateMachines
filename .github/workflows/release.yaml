@@ -12,8 +12,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Package source
-        run: cd src
-          zip -r RobloxStateMachine.zip StateMachine/
+        run: cd src; zip -r RobloxStateMachine.zip StateMachine/
 
       - name: Upload source to release
         run: gh release upload $GITHUB_REF RobloxStateMachine.zip

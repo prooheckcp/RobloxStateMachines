@@ -15,4 +15,4 @@ jobs:
         run: cd src && zip -r RobloxStateMachine.zip StateMachine/
 
       - name: Upload source to release
-        run: gh release upload $GITHUB_REF RobloxStateMachine.zip
+        run: gh release upload ${{ github.token }} RobloxStateMachine.zip

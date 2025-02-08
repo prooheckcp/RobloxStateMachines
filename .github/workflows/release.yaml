@@ -1,0 +1,20 @@
+name: Release
+
+on:
+  release:
+    types: [created, published]
+
+jobs:
+  package:
+    name: Package src to release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Package source
+        run: cd src && zip -r RobloxStateMachine.zip StateMachine/
+
+      - name: Upload source to release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload ${{ github.ref_name }} src/RobloxStateMachine.zip
